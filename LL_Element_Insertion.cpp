@@ -41,6 +41,32 @@ void ins_Node_First(list *lp, int item)
     lp->start = newNode;
     cout << "~~Successfully Insert at First\n";
 }
+void ins_yafterx(list *lp, int x, int y){
+    //If List is empty
+    if (lp->start == NULL)  
+    {
+        cout << "x Not Found";
+    }
+    Node *ptr = lp->start;
+    while (ptr->data != x && ptr->link != NULL)
+    {
+        ptr = ptr->link;
+    }
+    if (ptr->data == x)
+    {
+    Node *newNode = new Node;
+    newNode->data = y;
+    newNode->link = ptr->link;
+    ptr->link = newNode;
+    cout << "successfully added " << y <<" after " << x << "\n";
+    }
+    else
+    {
+        cout << x <<" NOT FOUND\n";
+    }
+    
+    
+}
 void display(list l0)
 {
     // Check for UnderFlow
@@ -52,8 +78,7 @@ void display(list l0)
     Node *ptr = l0.start;
     while (ptr != NULL)
     {
-        cout << "\n"
-             << ptr->data;
+        cout << ptr->data <<"\n";
         ptr = ptr->link;
     }
 }
@@ -71,6 +96,8 @@ int main()
     ins_Node_First(&l, 100);
     ins_Node_First(&l, 200);
     ins_Node_First(&l, 300);
+    display(l);
+    ins_yafterx(&l, 100, 255);
     display(l);
     return 0;
 }
